@@ -1,299 +1,168 @@
-**Komiser is back 🎉 and we're looking for maintainers to work on the new roadmap, if you're interested, join us on our <a href="https://discord.oraculi.io">Discord</a> community**
+**Komiser is back 🎉 and we're looking for maintainers to work on the new [roadmap](https://roadmap.tailwarden.com/), if you're interested, join us on our <a href="https://discord.tailwarden.com">Discord</a> community**
 
-<a href="https://komiser.io">
-  <img src="https://cdn.komiser.io/images/logo.png" width="200" align="right" alt="Amp Logo">
-</a>
+---
 
-<a href="https://komiser.io"><img alt="Amp" src="https://cdn.komiser.io/images/komiser-oraculi.png" width="120" valign="middle"></a>
+<h1 align="center"><img src="https://cdn.komiser.io/images/readme-komiser-header.png?version=latest" alt="Amp Logo"></h1>
 
-[![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/mlabouardy/komiser/blob/master/LICENSE) [![Docker Stars](https://img.shields.io/docker/pulls/mlabouardy/komiser.svg)](https://hub.docker.com/r/mlabouardy/komiser) 
-[![ELv2 License](https://img.shields.io/badge/license-ELv2-green)](LICENSE) [![CircleCI](https://circleci.com/gh/mlabouardy/komiser/tree/master.svg?style=svg&circle-token=d35b1c7447995e60909b24fd316fef0988e76bc8)](https://circleci.com/gh/mlabouardy/komiser/tree/master) [![Docker Stars](https://img.shields.io/github/issues/mlabouardy/komiser.svg)](https://github.com/mlabouardy/komiser/issues) [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.oraculi.io/)
+<h4 align="center">
+    <a href="https://discord.tailwarden.com">Discord</a> |
+    <a href="https://github.com/tailwarden/komiser/discussions">Discussions</a> |
+    <a href="https://komiser.io?utm_source=github&utm_medium=social/">Site</a><br/><br/>
+    <a href="https://docs.komiser.io/docs/introduction/getting-started?utm_source=github&utm_medium=social/">Guide</a> |
+    <a href="https://docs.komiser.io/docs/guides/overview?utm_source=github&utm_medium=social">How to Komiser</a> |
+    <a href="https://docs.komiser.io/docs/intro">Docs</a><br/><br/>
+    <a href="https://docs.komiser.io/docs/contributing/contribute?utm_source=github&utm_medium=social">Contribute</a> | 
+    <a href="https://roadmap.tailwarden.com">Roadmap</a><br/><br/>
+</h4>
 
+[![Price](https://img.shields.io/badge/price-FREE-0098f7.svg)](https://github.com/tailwarden/komiser/blob/master/LICENSE) [![Docker Stars](https://img.shields.io/docker/pulls/mlabouardy/komiser.svg)](https://hub.docker.com/r/mlabouardy/komiser) 
+[![ELv2 License](https://img.shields.io/badge/license-ELv2-green)](LICENSE) [![CircleCI](https://circleci.com/gh/tailwarden/komiser/tree/master.svg?style=svg&circle-token=d35b1c7447995e60909b24fd316fef0988e76bc8)](https://circleci.com/gh/tailwarden/komiser/tree/master) [![Docker Stars](https://img.shields.io/github/issues/tailwarden/komiser.svg)](https://github.com/tailwarden/komiser/issues) [![Discord](https://badgen.net/badge/icon/discord?icon=discord&label)](https://discord.tailwarden.com/)
 
-Stay under budget by uncovering hidden costs, monitoring increases in spend, and making impactful changes based on custom recommendations.
+Komiser is an open-source cloud-agnostic resource manager. It integrates with multiple cloud providers (including AWS, Azure, Civo, Digital Ocean, OCI, Linode, Tencent and Scaleway), builds a cloud asset inventory, and helps you break down your cost at the resource level 💰
 
-**Discuss it on [Product Hunt](https://www.producthunt.com/posts/komiser) 🦄**
+<h1 align="center"><img src="https://cdn.komiser.io/gifs/readme-komiser-repo.gif?version=latest" alt="Komiser gif"></h1>
 
-*Cloud version is available in private beta test stage, sign in for free at [https://cloud.oraculi.io](https://cloud.oraculi.io)*
+*Cloud version is available in private beta, sign in for free at [https://cloud.tailwarden.com](https://cloud.tailwarden.com?utm_source=github&utm_medium=social)*
 
-[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40Komiser)](https://twitter.com/komiseree) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Optimize%20Cost%20and%20Security%20on%20AWS&url=https://github.com/mlabouardy/komiser&via=mlabouardy&hashtags=komiser,aws,gcp,cloud,serverless,devops) 
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20%40Komiser)](https://twitter.com/komiserdotio) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Optimize%20Cost%20and%20Security%20on%20AWS&url=https://github.com/tailwarden/komiser&via=mlabouardy&hashtags=komiser,aws,gcp,cloud,serverless,devops) 
 
-**Highlights**
-
-* Analyze and manage cloud cost, usage, security, and governance in one place.
-* Control your usage and create visibility across all used services to achieve maximum cost-effectiveness.
-* Detect potential vulnerabilities that could put your cloud environment at risk.
-* Get a deep understanding of how you spend on the AWS, GCP, OVH, DigitalOcean and Azure.
-
-<p align="center">
-
-[![IMAGE ALT TEXT HERE](https://cdn.komiser.io/images/thumbnail.png?v=3)](https://www.youtube.com/watch?v=DDWf2KnvgE8)
-
-</p>
-
-## Download
-
-Below are the available downloads for the latest version of Komiser (2.9.0). Please download the proper package for your operating system and architecture.
-
-### Linux:
+## Komiser CLI, try it out! 🚀
+---
+The easiest way to get started with Komiser is to install the [Komiser CLI](https://docs.komiser.io/docs/introduction/getting-started?utm_source=github&utm_medium=social) by running the `Homebrew` commands below. Don't have Homebrew? Install it [here](https://docs.brew.sh/Installation).
 
 ```
-wget https://cli.komiser.io/2.9.0/linux/komiser
-```
-
-### Windows:
-
-```
-wget https://cli.komiser.io/2.9.0/windows/komiser -OutFile komiser.exe
-```
-
-### Mac OS X:
-
-```
-wget https://cli.komiser.io/2.9.0/osx/komiser
-```
-
-_Note_: make sure to add the execution permission to Komiser `chmod +x komiser`
-
-```
-brew tap HelloOraculi/komiser
+brew tap tailwarden/komiser
 brew install komiser
 ```
 
-### Docker:
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
 
-```
-docker run -d -p 3000:3000 -e AWS_ACCESS_KEY_ID="" -e AWS_SECRET_ACCESS_KEY="" -e AWS_DEFAULT_REGION="" --name komiser mlabouardy/komiser:2.9.0
-```
+- [What is Komiser?](#what-is-komiser-)
+  - [Who is using it?](#who-is-using-it)
+- [Getting started](#getting-started-)
+  - [Download](#download)
+  - [Installation on AWS](#installation-on-aws)
+    - [Connect Komiser CLI to your AWS account.](#connect-komiser-cli-to-your-aws-account)
+    - [Deploy Komiser to single account access EKS cluster (Helm chart)](#deploy-komiser-to-single-account-access-eks-cluster-helm-chart)
+    - [Deploy Komiser to a multi account access EKS cluster (Helm chart)](#deploy-komiser-to-a-multi-account-access-eks-cluster-helm-chart)
+  - [Installation on Azure](#installation-on-azure)
+  - [Installation on Civo](#installation-on-civo)
+  - [Installation on OCI](#installation-on-oci)
+  - [Installation on Digital Ocean](#installation-on-digital-ocean)
+  - [Installation on Linode](#installation-on-linode)
+  - [Installation on Tencent](#installation-on-tencent-cloud)
+  - [Installation on Scaleway](#installation-on-scaleway)
+- [Documentation](#documentation-)
+  - [Jump right in:](#jump-right-in)
+- [Bugs and feature requests](#bugs-and-feature-requests-)
+- [Roadmap and Contributing](#roadmap-and-contributing-%EF%B8%8F)
+- [Users](#users-)
+- [Versioning](#versioning-)
 
-## How to use
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-### AWS
+# What is Komiser? 🤷
+Komiser is an open source project created to **analyse** and **manage cloud cost**, **usage**, **security** and **governance** all in one place. With komiser you can also: 
+* Control your **resource usage** and gain visibility across all used services to achieve maximum cost-effectiveness.
+* Detect **potential vulnerabilities** that could put your cloud environment at risk.
+* Get a deep understanding of **how you spend** on the AWS, Civo, OVH, DigitalOcean and OCI.
 
-* Create an IAM user with the following IAM [policy](https://raw.githubusercontent.com/mlabouardy/komiser/master/policy.json):
+<h1 align="center"><img src="https://cdn.komiser.io/images/komiser-readme-wireframe.png?version=latest" alt="Amp Logo"></h1>
 
-```
-wget https://raw.githubusercontent.com/mlabouardy/komiser/master/policy.json
-```
+## Who is using it?
+Komiser was built with every Cloud Engineer, Developer, DevOps engineer and SRE in mind. We understand that tackling cost savings, security improvements and resource usage analyse efforts can be hard, sometimes just knowing where to start, can be the most challenging part at times. Komiser is here to help those cloud practitioners see their cloud resources and accounts much more clearly. Only with clear insight can timely and efficient actions take place.
 
-* Add your **Access Key ID** and **Secret Access Key** to *~/.aws/credentials* using this format
+# Getting started 👇
 
-``` 
-[default]
-aws_access_key_id = <access key id>
-aws_secret_access_key = <secret access key>
-region = <AWS region>
-```
+## Download
 
-* That should be it. Try out the following from your command prompt to start the server:
+You can run Komiser locally, as a Docker container or by running it inside a Kubernetes cluster.
+Below are the available downloads for the latest version of Komiser. Please [download](https://docs.komiser.io/docs/introduction/getting-started?utm_source=github&utm_medium=social) the appropriate package for your operating system and architecture. 
 
-```
-komiser start --port 3000
-```
+## Installation on AWS
 
-You can also use Redis as a caching server:
+### Connect Komiser CLI to your AWS account. 
+* Connect a [local deployment](https://docs.komiser.io/docs/cloud-providers/aws/#local-komiser-cli) of Komiser CLI to you AWS account
 
-```
-komiser start --port 3000 --redis localhost:6379 --duration 30
-```
+### Deploy Komiser to single account access EKS cluster (Helm chart)
+* If you want to connect a single AWS account follow the documentation [here](https://docs.komiser.io/docs/cloud-providers/aws/#eks-installation-single-account). 
 
-* Point your browser to http://localhost:3000
+Watch the installation [video here](https://www.youtube.com/watch?v=4veDmJpui44&t)
 
-<p align="center">
-    <img src="https://cdn.komiser.io/images/dashboard-aws.png"/>
-</p>
+### Deploy Komiser to a multi account access EKS cluster (Helm chart)
+* If you would like to connect various AWS accounts to a Komiser deployment in a Management EKS cluster, follow the steps [here](https://docs.komiser.io/docs/cloud-providers/aws/#multiple-account-eks-helm-chart-installation).
 
-#### Multiple AWS Accounts Support
+## Installation on Azure
 
-Komiser support multiple AWS accounts through named profiles that are stored in the `config` and `credentials files`. You can configure additional profiles by using `aws configure` with the `--profile` option, or by adding entries to the `config` and `credentials` files.
+Connect a local deployment of Komiser CLI to you [**Azure**](https://docs.komiser.io/docs/cloud-providers/azure?utm_source=github&utm_medium=social) account.
 
-The following example shows a credentials file with 3 profiles (production, staging & sandbox accounts):
+## Installation on Civo
 
-```
-[Production]
-aws_access_key_id=<AWS_ACCESS_KEY_ID>
-aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
+Connect a local deployment of Komiser CLI to your [**Civo**](https://docs.komiser.io/docs/cloud-providers/civo?utm_source=github&utm_medium=social) account.
+Watch the installation [video here](https://www.youtube.com/watch?v=NBbEpoW-kVs)
 
-[Staging]
-aws_access_key_id=<AWS_ACCESS_KEY_ID>
-aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
+## Installation on OCI
 
-[Sandbox]
-aws_access_key_id=<AWS_ACCESS_KEY_ID>
-aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
-```
+Connect a local deployment of Komiser CLI to your [**OCI**](https://docs.komiser.io/docs/cloud-providers/oci?utm_source=github&utm_medium=social) account.
 
-To enable multiple AWS accounts feature, add the --multiple option to Komiser:
+## Installation on Digital Ocean
 
-```
-komiser start --port 3000 --redis localhost:6379 --duration 30 --multiple
-```
+Connect a local deployment of Komiser CLI to you [**Digital Ocean**](https://docs.komiser.io/docs/cloud-providers/digital-ocean?utm_source=github&utm_medium=social) account.
 
-* If you point your browser to http://localhost:3000, you should be able to see your accounts:
+## Installation on Linode
 
-<p align="center">
-    <img src="https://cdn.komiser.io/images/dashboard-aws-multiple.png"/>
-</p>
+Connect a local deployment of Komiser CLI to you [**Linode**](https://docs.komiser.io/docs/cloud-providers/linode?utm_source=github&utm_medium=social) account.
 
-### GCP
+## Installation on Tencent Cloud
 
-* Create a service account with *Viewer* permission, see [Creating and managing service accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts) docs.
-* Enable the below APIs for your project through GCP Console, `gcloud` or using the Service Usage API. You can find out more about these options in [Enabling an API in your GCP project](https://cloud.google.com/endpoints/docs/openapi/enable-api) docs.
-  * appengine.googleapis.com
-  * bigquery-json.googleapis.com 
-  * compute.googleapis.com 
-  * cloudfunctions.googleapis.com
-  * container.googleapis.com
-  * cloudresourcemanager.googleapis.com
-  * cloudkms.googleapis.com
-  * dns.googleapis.com
-  * dataflow.googleapis.com
-  * dataproc.googleapis.com
-  * iam.googleapis.com
-  * monitoring.googleapis.com
-  * pubsub.googleapis.com
-  * redis.googleapis.com
-  * serviceusage.googleapis.com
-  * storage-api.googleapis.com
-  * sqladmin.googleapis.com 
-* To analyze and optimize the infrastructure cost, you need to export your daily cost to BigQuery, see [Export Billing to BigQuery](https://cloud.google.com/billing/docs/how-to/export-data-bigquery) docs.
+Connect a local deployment of Komiser CLI to you [**Tencent**](https://docs.komiser.io/docs/cloud-providers/tencent?utm_source=github&utm_medium=social) account.
 
+## Installation on Scaleway
 
-* Provide authentication credentials to your application code by setting the environment variable *GOOGLE_APPLICATION_CREDENTIALS*:
+Connect a local deployment of Komiser CLI to you [**Scaleway**](https://docs.komiser.io/docs/cloud-providers/scaleway?utm_source=github&utm_medium=social) account.
 
-``` 
-export GOOGLE_APPLICATION_CREDENTIALS="[PATH]"
-```
 
-* That should be it. Try out the following from your command prompt to start the server:
+# Documentation 📖
 
-```
-komiser start --port 3000 --dataset project-id.dataset-name.table-name
-```
+Head over to the official `Komiser` documentation at [docs.komiser.io](https://docs.komiser.io?utm_source=github&utm_medium=social). The source repository for the documentation website is [tailwarden/docs](https://github.com/tailwarden/docs). 
 
-* Point your browser to http://localhost:3000
+We know that writing docs isn't usually at the top of too many peoples "What I like to do for fun" list, but if you feel so inclined, by all means, consider [contributing](https://docs.komiser.io/docs/contributing/contribute?utm_source=github&utm_medium=social) to our documentation repository, we will be very grateful. It's built using [Docusaurus](https://docusaurus.io/). 
 
-<p align="center">
-    <img src="https://cdn.komiser.io/images/dashboard-gcp.png"/>
-</p>
+## Jump right in:
+* [Documentation overview](https://docs.komiser.io/docs/intro?utm_source=github&utm_medium=social)
+* [Installation](https://docs.komiser.io/docs/introduction/getting-started?utm_source=github&utm_medium=social)
+* [FAQs](https://docs.komiser.io/docs/faqs?utm_source=github&utm_medium=social)
+* Video series: 📹
+    * [How to: Komiser](https://www.youtube.com/watch?v=9pCimmIT-HQ&list=PLFIcIMmOFDZeMzcvOi7bPd4I6xUNq3A5R/alerts)
+    * [Installation videos](https://www.youtube.com/watch?v=urxi9z2IUf4&list=PLFIcIMmOFDZfaO_WmUF_qnF8akCII7Uk_) 
 
-### Azure
+# Bugs and feature requests 🐞
 
-* Set the following environment variables:
-  
-| Variable              | Description                                                      |
-| --------------------- | ---------------------------------------------------------------- |
-| AZURE_TENANT_ID       | The Azure Active Directory tenant(directory) ID.                 |
-| AZURE_CLIENT_ID       | The client(application) ID of an App Registration in the tenant. |
-| AZURE_CLIENT_SECRET   | A client secret that was generated for the App Registration.     |
-| AZURE_SUBSCRIPTION_ID | Azure subscription ID                                            |
+Have a bug or a feature request? Please first read the issue guidelines and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/tailwarden/komiser/issues).
 
-* That should be it. Try out the following from your command prompt to start the server:
+# Roadmap and Contributing 🛣️
 
-```
-komiser start --port 3000
-```
+We are very excited about what is in store in the coming weeks and months, take a look at the [public roadmap](https://tailwarden.canny.io/) to stay on top of what's coming down the pipeline. 
 
-* Point your browser to http://localhost:3000
+Komiser is written in `Golang` and is `Elv2 licensed` - contributions are always welcome whether that means providing feedback, be it through GitHub, through the `#feedback` channel on our [Discord server](https://discord.tailwarden.com) or testing existing and new features. Feel free to check out our [contributor guidelines](./CONTRIBUTING.md) and consider becoming a **contributor** today. 
 
-<p align="center">
-    <img src="https://cdn.komiser.io/images/dashboard-azure.png"/>
-</p>
+### Watch! :
+Learn how to contribute with this walkthrough [video](https://www.youtube.com/watch?v=Vn5uc2elcVg)
 
-### OVH
+# Users 🧑‍🤝‍🧑
 
-* Create an API application from [here](https://eu.api.ovh.com/createToken/). 
-
-* This CLI will first look for direct instanciation parameters then `OVH_ENDPOINT`, `OVH_APPLICATION_KEY`, `OVH_APPLICATION_SECRET` and `OVH_CONSUMER_KEY` environment variables. If either of these parameter is not provided, it will look for a configuration file of the form:
-
-```
-[default]
-; general configuration: default endpoint
-endpoint=ovh-eu
-
-[ovh-eu]
-; configuration specific to 'ovh-eu' endpoint
-application_key=my_app_key
-application_secret=my_application_secret
-consumer_key=my_consumer_key
-```
-
-* The CLI will successively attempt to locate this configuration file in
-
-    * Current working directory: `./ovh.conf`
-    * Current user's home directory `~/.ovh.conf`
-    * System wide configuration `/etc/ovh.conf`
-
-* If you point your browser to http://localhost:3000, you should be able to see your projects:
-
-<p align="center">
-    <img src="https://cdn.komiser.io/images/dashboard-ovh.png"/>
-</p>
-
-### DigitalOcean
-
-* To generate a personal access token, log in to the [DigitalOcean Control Panel](https://cloud.digitalocean.com/).
-
-* Click the **API** link in the main navigation, In the **Personal access tokens** section, click the **Generate New Token** button.
-
-* Create a *ready-only* scope token. When you click **Generate Token**, your token will be generated.
-
-* Set *DIGITALOCEAN_ACCESS_TOKEN* environment variable:
-
-```
-export DIGITALOCEAN_ACCESS_TOKEN=<TOKEN>
-```
-
-* If you point your browser to http://localhost:3000, you should be able to see your projects:
-
-<p align="center">
-    <img src="https://cdn.komiser.io/images/dashboard-digitalocean.png"/>
-</p>
-
-## Options
-
-```
-komiser start [OPTIONS]
-```
-
-```
-   --port value, -p value      Server port (default: 3000)
-   --duration value, -d value  Cache expiration time (default: 30 minutes)
-   --redis value, -r value     Redis server (localhost:6379)
-   --dataset value, -ds value  BigQuery dataset name (project-id.dataset-name.table-name)
-   --multiple, -m              Enable multiple AWS accounts feature
-```
-
-## Configuring Credentials
-
-When using the CLI with AWS, you'll generally need your AWS credentials to authenticate with AWS services. Komiser supports multiple methods of supporting these credentials. By default the CLI will source credentials automatically from its default credential chain.
-
-* Environment Credentials - Set of environment variables that are useful when sub processes are created for specific roles.
-
-* Shared Credentials file (~/.aws/credentials) - This file stores your credentials based on a profile name and is useful for local development.
-
-* EC2 Instance Role Credentials - Use EC2 Instance Role to assign credentials to application running on an EC2 instance. This removes the need to manage credential files in production.
-
-When using the CLI with GCP, Komiser checks to see if the environment variable `GOOGLE_APPLICATION_CREDENTIALS` is set. If not an error occurs.
-
-## Documentation
-
-See our documentation on [docs.komiser.io](https://docs.komiser.io). The source repository for the documentation website is [komiserio/docs](https://github.com/komiserio/docs).
-
-## Bugs and feature requests
-
-Have a bug or a feature request? Please first read the issue guidelines and search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/mlabouardy/komiser/issues/new).
-
-## Roadmap and contributing
-
-Komiser is written in Golang and is Elv2 licensed - contributions are welcomed whether that means providing feedback or testing existing and new feature.
-
-## Users
-
-If you'd like to have your company represented and are using Komiser please give formal written permission below via a comment on this [thread](https://github.com/mlabouardy/komiser/issues/76) or via email to contact@oraculi.io.
+If you'd like to have your company represented and are using `Komiser` please give formal written permission below via email to contact@tailwarden.com.
 
 We will need a URL to a svg or png logo, a text title and a company URL.
 
-## Versioning
+# Versioning 🧮
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/mlabouardy/komiser/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/tailwarden/komiser/tags). 
+
+# Contributors
+
+<a href="https://github.com/tailwarden/komiser/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=tailwarden/komiser" />
+</a>

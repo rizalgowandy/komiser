@@ -12,6 +12,7 @@ import (
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
 	"github.com/BurntSushi/toml"
+	"github.com/aws/aws-sdk-go-v2/aws"
 	awsConfig "github.com/aws/aws-sdk-go-v2/config"
 	"github.com/civo/civogo"
 	"github.com/digitalocean/godo"
@@ -102,10 +103,11 @@ func Load(configPath string, telemetry bool, analytics utils.Analytics) (*models
 						Name:      account.Name,
 					})
 				} else {
-					cfg, err := awsConfig.LoadDefaultConfig(context.Background(), awsConfig.WithSharedConfigProfile(account.Profile))
+					cfg, err := awsConfig.LoadDefaultConfig(context.Background(), awsConfig.WithSharedConfigProfile(account.Profile), awsConfig.WithRetryMode(aws.RetryModeAdaptive))
 					if err != nil {
 						return nil, nil, nil, err
 					}
+
 					clients = append(clients, providers.ProviderClient{
 						AWSClient: &cfg,
 						Name:      account.Name,

@@ -3,11 +3,13 @@ package networking
 import (
 	"context"
 	"fmt"
+	"time"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/network/armnetwork"
 	log "github.com/sirupsen/logrus"
 	"github.com/tailwarden/komiser/providers/azure/resourcegroup"
-	"time"
 
 	"github.com/tailwarden/komiser/models"
 	"github.com/tailwarden/komiser/providers"
@@ -24,10 +26,22 @@ func LocalNetworkGateways(ctx context.Context, client providers.ProviderClient) 
 		return resources, nil
 	}
 
+	retryOptions := policy.RetryOptions{
+		MaxRetries:    6,
+		RetryDelay:    2 * time.Second,
+		MaxRetryDelay: 120 * time.Second,
+	}
+
+	clientOptions := &arm.ClientOptions{
+		ClientOptions: policy.ClientOptions{
+			Retry: retryOptions,
+		},
+	}
+
 	localNetworkGatewayClient, err := armnetwork.NewLocalNetworkGatewaysClient(
 		client.AzureClient.SubscriptionId,
 		client.AzureClient.Credentials,
-		&arm.ClientOptions{},
+		clientOptions,
 	)
 	if err != nil {
 		return resources, err

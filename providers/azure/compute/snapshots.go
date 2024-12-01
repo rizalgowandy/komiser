@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
 	log "github.com/sirupsen/logrus"
 
@@ -16,7 +17,19 @@ import (
 func Snapshots(ctx context.Context, client providers.ProviderClient) ([]models.Resource, error) {
 	resources := make([]models.Resource, 0)
 
-	svc, err := armcompute.NewSnapshotsClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, &arm.ClientOptions{})
+	retryOptions := policy.RetryOptions{
+		MaxRetries:    6,
+		RetryDelay:    2 * time.Second,
+		MaxRetryDelay: 120 * time.Second,
+	}
+
+	clientOptions := &arm.ClientOptions{
+		ClientOptions: policy.ClientOptions{
+			Retry: retryOptions,
+		},
+	}
+
+	svc, err := armcompute.NewSnapshotsClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, clientOptions)
 	if err != nil {
 		return resources, err
 	}

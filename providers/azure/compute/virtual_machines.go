@@ -6,7 +6,8 @@ import (
 	"time"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
-	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm/policy"
+	armPolicy "github.com/Azure/azure-sdk-for-go/sdk/azcore/arm/policy"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/to"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/compute/armcompute/v4"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/costmanagement/armcostmanagement"
@@ -19,12 +20,24 @@ import (
 func VirtualMachines(ctx context.Context, client providers.ProviderClient) ([]models.Resource, error) {
 	resources := make([]models.Resource, 0)
 
-	svc, err := armcompute.NewVirtualMachinesClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, &arm.ClientOptions{})
+	retryOptions := policy.RetryOptions{
+		MaxRetries:    6,
+		RetryDelay:    2 * time.Second,
+		MaxRetryDelay: 120 * time.Second,
+	}
+
+	clientOptions := &arm.ClientOptions{
+		ClientOptions: policy.ClientOptions{
+			Retry: retryOptions,
+		},
+	}
+
+	svc, err := armcompute.NewVirtualMachinesClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, clientOptions)
 	if err != nil {
 		return resources, err
 	}
 
-	costClient, err := armcostmanagement.NewQueryClient(client.AzureClient.Credentials, &policy.ClientOptions{})
+	costClient, err := armcostmanagement.NewQueryClient(client.AzureClient.Credentials, &armPolicy.ClientOptions{})
 	if err != nil {
 		return resources, err
 	}

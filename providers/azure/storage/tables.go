@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/storage/armstorage"
 	log "github.com/sirupsen/logrus"
 
@@ -18,7 +19,19 @@ func Tables(ctx context.Context, client providers.ProviderClient) ([]models.Reso
 	resources := make([]models.Resource, 0)
 	storage := make([]Storage, 0)
 
-	storageAccountsClient, err := armstorage.NewAccountsClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, &arm.ClientOptions{})
+	retryOptions := policy.RetryOptions{
+		MaxRetries:    6,
+		RetryDelay:    2 * time.Second,
+		MaxRetryDelay: 120 * time.Second,
+	}
+
+	clientOptions := &arm.ClientOptions{
+		ClientOptions: policy.ClientOptions{
+			Retry: retryOptions,
+		},
+	}
+
+	storageAccountsClient, err := armstorage.NewAccountsClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, clientOptions)
 	if err != nil {
 		return resources, err
 	}
@@ -60,7 +73,6 @@ func Tables(ctx context.Context, client providers.ProviderClient) ([]models.Reso
 			for _, table := range page.Value {
 
 				tags := make([]models.Tag, 0)
-
 
 				resources = append(resources, models.Resource{
 					Provider:   "Azure",

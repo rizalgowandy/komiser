@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/databox/armdatabox"
 	log "github.com/sirupsen/logrus"
 
@@ -15,11 +17,23 @@ import (
 func Databoxes(ctx context.Context, client providers.ProviderClient) ([]models.Resource, error) {
 	resources := make([]models.Resource, 0)
 
-	svc, err := armdatabox.NewJobsClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, nil)
+	retryOptions := policy.RetryOptions{
+		MaxRetries:    6,
+		RetryDelay:    2 * time.Second,
+		MaxRetryDelay: 120 * time.Second,
+	}
+
+	clientOptions := &arm.ClientOptions{
+		ClientOptions: policy.ClientOptions{
+			Retry: retryOptions,
+		},
+	}
+
+	svc, err := armdatabox.NewJobsClient(client.AzureClient.SubscriptionId, client.AzureClient.Credentials, clientOptions)
 	if err != nil {
 		return resources, err
 	}
-	
+
 	pager := svc.NewListPager(nil)
 	for pager.More() {
 		page, err := pager.NextPage(ctx)
@@ -30,7 +44,7 @@ func Databoxes(ctx context.Context, client providers.ProviderClient) ([]models.R
 		for _, val := range page.Value {
 			tags := make([]models.Tag, 0)
 
-			for key, value := range  val.Tags{
+			for key, value := range val.Tags {
 				tags = append(tags, models.Tag{
 					Key:   key,
 					Value: *value,
@@ -40,7 +54,7 @@ func Databoxes(ctx context.Context, client providers.ProviderClient) ([]models.R
 			resources = append(resources, models.Resource{
 				Provider:   "Azure",
 				Account:    client.Name,
-				Service:   "Databox",
+				Service:    "Databox",
 				Region:     *val.Location,
 				ResourceId: *val.ID,
 				Cost:       0,

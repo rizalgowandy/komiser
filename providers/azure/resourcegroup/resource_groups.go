@@ -3,21 +3,35 @@ package resourcegroup
 import (
 	"context"
 	"fmt"
+	"time"
+
 	"github.com/Azure/azure-sdk-for-go/sdk/azcore/arm"
+	"github.com/Azure/azure-sdk-for-go/sdk/azcore/policy"
 	"github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/resources/armresources"
 	log "github.com/sirupsen/logrus"
 	"github.com/tailwarden/komiser/models"
 	"github.com/tailwarden/komiser/providers"
-	"time"
 )
 
 func ResourceGroups(ctx context.Context, client providers.ProviderClient) ([]models.Resource, error) {
 	resources := make([]models.Resource, 0)
 
+	retryOptions := policy.RetryOptions{
+		MaxRetries:    6,
+		RetryDelay:    2 * time.Second,
+		MaxRetryDelay: 120 * time.Second,
+	}
+
+	clientOptions := &arm.ClientOptions{
+		ClientOptions: policy.ClientOptions{
+			Retry: retryOptions,
+		},
+	}
+
 	resourceGroupClient, err := armresources.NewResourceGroupsClient(
 		client.AzureClient.SubscriptionId,
 		client.AzureClient.Credentials,
-		&arm.ClientOptions{},
+		clientOptions,
 	)
 
 	if err != nil {

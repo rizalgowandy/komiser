@@ -92,6 +92,7 @@ func Load(configPath string, telemetry bool, analytics utils.Analytics) (*models
 			}
 			accounts = append(accounts, cloudAccount)
 
+			var cfg aws.Config
 			if account.Source == "CREDENTIALS_FILE" {
 				if len(account.Path) > 0 {
 					cfg, err := awsConfig.LoadDefaultConfig(context.Background(), awsConfig.WithSharedConfigProfile(account.Profile), awsConfig.WithSharedCredentialsFiles(
@@ -105,7 +106,7 @@ func Load(configPath string, telemetry bool, analytics utils.Analytics) (*models
 						Name:      account.Name,
 					})
 				} else {
-					cfg, err := awsConfig.LoadDefaultConfig(context.Background(), awsConfig.WithSharedConfigProfile(account.Profile), awsConfig.WithRetryMode(aws.RetryModeAdaptive))
+					cfg, err := awsConfig.LoadDefaultConfig(context.Background(), awsConfig.WithSharedConfigProfile(account.Profile))
 					if err != nil {
 						return nil, nil, nil, err
 					}
@@ -125,6 +126,7 @@ func Load(configPath string, telemetry bool, analytics utils.Analytics) (*models
 					Name:      account.Name,
 				})
 			}
+			cfg.RetryMode = aws.RetryModeAdaptive
 		}
 		if telemetry {
 			analytics.TrackEvent("connected_account", map[string]interface{}{

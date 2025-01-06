@@ -1,0 +1,118 @@
+before:
+  hooks:
+    - go mod tidy
+    - go-bindata-assetfs -o internal/api/v1/template.go out/...
+    - sed -i -e 's/package main/package v1/g' internal/api/v1/template.go
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+      - goos: linux
+        goarch: arm64
+    ldflags:
+      - -X github.com/tailwarden/komiser/internal.Version={{ .Version }}
+      - -X github.com/tailwarden/komiser/internal.Buildtime={{ .Timestamp }}
+      - -X github.com/tailwarden/komiser/internal.Commit={{ .FullCommit }}
+
+blobs:
+  - provider: s3
+    bucket: komiser-releases
+    folder: "/{{.Version}}"
+    region: eu-central-1
+  - provider: s3
+    bucket: komiser-releases
+    folder: "/latest"
+    region: eu-central-1
+
+brews:
+  - tap:
+      owner: tailwarden
+      name: homebrew-komiser
+      branch: master
+      token: "{{ .Env.PURPLIN_BOT }}"
+    commit_author:
+      name: purplin
+      email: purplin@tailwarden.com
+    folder: Formula
+    homepage: "https://komiser.io"
+    description: "Komiser.io command line interface"
+    url_template: "https://cli.komiser.io/{{ .Version }}/{{ .ArtifactName }}"
+    commit_msg_template: "chore: bump version to {{ .Version }}"
+
+dockers:
+  - image_templates:
+      - tailwarden/komiser:{{ .Version }}-amd64
+      - tailwarden/komiser:{{ .FullCommit }}-amd64
+    dockerfile: Dockerfile
+    use: buildx
+    build_flag_templates:
+      - --platform=linux/amd64
+      - --build-arg=SEGMENT_WRITE_KEY={{ .Env.SEGMENT_WRITE_KEY }}
+      - --build-arg=VERSION={{ .Version }}
+  - image_templates:
+      - tailwarden/komiser:{{ .Version }}-arm64
+      - tailwarden/komiser:{{ .FullCommit }}-arm64
+    dockerfile: Dockerfile
+    use: buildx
+    build_flag_templates:
+      - --platform=linux/arm64
+      - --build-arg=SEGMENT_WRITE_KEY={{ .Env.SEGMENT_WRITE_KEY }}
+      - --build-arg=VERSION={{ .Version }}
+
+docker_manifests:
+  - name_template: tailwarden/komiser:{{ .FullCommit }}
+    image_templates:
+      - tailwarden/komiser:{{ .FullCommit }}-amd64
+      - tailwarden/komiser:{{ .FullCommit }}-arm64
+  - name_template: tailwarden/komiser:{{ .Version }}
+    image_templates:
+      - tailwarden/komiser:{{ .Version }}-amd64
+      - tailwarden/komiser:{{ .Version }}-arm64
+  - name_template: tailwarden/komiser:latest
+    image_templates:
+      - tailwarden/komiser:{{ .Version }}-amd64
+      - tailwarden/komiser:{{ .Version }}-arm64
+
+release:
+  github:
+    owner: tailwarden
+    name: komiser
+  draft: true
+
+archives:
+  - format: binary
+    # this name template makes the OS and Arch compatible with the results of uname.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    # use zip for windows archives
+    format_overrides:
+      - goos: windows
+        format: zip
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+# The lines beneath this are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj

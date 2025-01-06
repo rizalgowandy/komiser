@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background: #edebee;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #95a3a3;
+    border-radius: 100vh;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #95a3a3;
+  }
+
+  /* Remove the default browser styles */
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer responsive {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+.rotate-onboarding-arrow {
+  /* flip horizontally */
+  transform: rotateY(180deg);
+}
+
+.dependency-graph-nodeLabel {
+  transition: opacity 0.2s linear;
+  opacity: 0;
+}
+
+.popper-div {
+  text-shadow:
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9,
+    0 0 5px #f4f9f9;
+  position: relative;
+  color: #000;
+  font-size: 16px;
+  padding: 5px 9px;
+}
+
+#feedback-modal-modal {
+  max-height: 80vh;
+  padding-right: 16px;
+  padding-left: 16px;
+}

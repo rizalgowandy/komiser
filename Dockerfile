@@ -1,14 +1,18 @@
-FROM alpine:3.9.3
-MAINTAINER mlabouardy <mohamed@labouardy.com>
+FROM --platform=$BUILDPLATFORM alpine:3.16
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+ARG SEGMENT_WRITE_KEY
+ARG VERSION
+LABEL MAINTAINER="mlabouardy <mohamed@tailwarden.com>"
 
-ENV VERSION 2.0.0
-ENV PORT 3000
-ENV DURATION 30
+RUN echo "Running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
 
-RUN apk update && apk add curl
-RUN curl -L https://s3.us-east-1.amazonaws.com/komiser/$VERSION/linux/komiser -o /usr/bin/komiser && \
-    chmod +x /usr/bin/komiser && \
+ENV SEGMENT_WRITE_KEY $SEGMENT_WRITE_KEY
+ENV VERSION $VERSION
+
+COPY komiser /usr/bin/komiser
+RUN chmod +x /usr/bin/komiser && \
     mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 EXPOSE $PORT
-ENTRYPOINT komiser start --port $PORT
+ENTRYPOINT ["komiser", "start"]
